@@ -6,7 +6,7 @@
     let a=JSON.parse(localStorage.getItem("notes"));
     a.forEach(element => {
       if(element!=null){
-      document.getElementById("add").innerHTML += `<div class="w-auto p-8 border-solid border-black border-2 m-5 rounded-lg"><h1 class="text-2xl font-bold ">
+      document.getElementById("add").innerHTML += `<div class="w-auto p-8 border-solid border-black border-2 m-5 rounded-lg noteCards"><h1 class="text-2xl font-bold ">
       ${element[0]}
     </h1>
     <p> ${element[1]}</p>
@@ -47,3 +47,15 @@
       display();
       del();
   });
+  document.getElementById("search").addEventListener("input",()=>{
+      Array.from(document.getElementsByClassName("noteCards")).forEach(element=>{
+        if(element.getElementsByTagName("p")[0].innerText.toLowerCase().includes(document.getElementById("search").value.toLowerCase()))
+        {
+          element.style.display="block";
+        }
+        else
+        {
+          element.style.display="none";
+        }
+      })
+  })
